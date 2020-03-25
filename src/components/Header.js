@@ -2,9 +2,11 @@ import React from 'react';
 
 const Header = () =>{
     return (
-        <div >
-            <h1 className="ui header">Mózner cipő!</h1>
-        </div>
+        <div className="ui three item menu">
+            <a href="/" className="item">Cipők</a>
+            <a href="/" className="item">Rólunk</a>
+            <a href="/" className="item">Rendelés</a>
+      </div>
     )
 }
 
