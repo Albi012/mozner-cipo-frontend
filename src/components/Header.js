@@ -1,11 +1,13 @@
 import React from 'react';
 
-const Header = () =>{
+const Header = (props) =>{
     return (
-        <div className="ui three item menu">
-            <a href="/" className="item">Cipők</a>
-            <a href="/" className="item">Rólunk</a>
-            <a href="/" className="item">Rendelés</a>
+        <div className="ui segment">
+            <div className="ui three item menu">
+                <button onClick={props.loadShoes} className="item">Cipők</button>
+                <button onClick={props.loadInfo} className="item">Rólunk</button>
+                <button className="item">Rendelés</button>
+        </div>
       </div>
     )
 }
