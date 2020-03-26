@@ -2,13 +2,11 @@ import React from 'react';
 
 const Header = (props) =>{
     return (
-        <div className="ui segment">
             <div className="ui three item menu">
-                <button onClick={props.loadShoes} className="item">Cipők</button>
-                <button onClick={props.loadInfo} className="item">Rólunk</button>
-                <button className="item">Rendelés</button>
+                <button onClick={props.loadShoes} className="ui button item">Cipők</button>
+                <button onClick={props.loadInfo} className="ui button item">Rólunk</button>
+                <button onClick={props.loadOrder} className="ui button item">Rendelés</button>
         </div>
-      </div>
     )
 }
 
