@@ -11,7 +11,7 @@ class ShoeList extends React.Component{
         });
         return (
         <div className="ui grid">
-          <div className="three column row">
+          <div className="ui links cards three column row">
             {shoes}
           </div>
         </div>
