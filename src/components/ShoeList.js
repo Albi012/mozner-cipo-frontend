@@ -7,11 +7,11 @@ class ShoeList extends React.Component{
 
       render(){
         const shoes = this.props.shoes.map(shoe => {
-          return <ShoeItem key={shoe.id} name={shoe.name} size={shoe.size} />;
+          return <ShoeItem key={shoe.id} id={shoe.id} name={shoe.name} size={shoe.size} price={shoe.price} />;
         });
         return (
-        <div className="ui grid">
-          <div className="ui links cards three column row">
+        <div className="ui grid" style={{margin : "auto",width:"80%", padding:"5px"}}>
+          <div className="ui links cards three column row" style={{backgroundColor:"white",borderRadius:"25px"}}>
             {shoes}
           </div>
         </div>
