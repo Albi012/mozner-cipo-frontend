@@ -1,13 +1,15 @@
-import React from 'react';
+import React from "react";
+import { Navbar,Nav } from "react-bootstrap";
 
-const Header = (props) =>{
-    return (
-            <div className="ui three item menu">
-                <button onClick={props.loadShoes} className="ui button item">Cipők</button>
-                <button onClick={props.loadInfo} className="ui button item">Rólunk</button>
-                <button onClick={props.loadOrder} className="ui button item">Rendelés</button>
-        </div>
-    )
-}
+const Header = (props) => {
+  return (
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand className="justify-content-between">Mózner Cipőbolt</Navbar.Brand>
+      <button className="btn btn-primary" style={{margin:'5px'}} onClick={props.loadShoes}>Cipők</button>
+      <button className="btn btn-primary" style={{margin:'5px'}} onClick={props.loadInfo}>Rólunk</button>
+      <button className="btn btn-primary" style={{margin:'5px'}} onClick={props.loadOrder}>Rendelés</button>
+    </Navbar>
+  );
+};
 
 export default Header;

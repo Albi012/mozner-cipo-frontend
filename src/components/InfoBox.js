@@ -1,7 +1,7 @@
 import React from "react";
 
 const InfoBox = () =>{
-        return <div className="ui segment">InfoBox</div>;
+        return <div>InfoBox</div>;
 }
 
 export default InfoBox;
