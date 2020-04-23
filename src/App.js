@@ -26,7 +26,7 @@ class App extends React.Component{
         return <div style={{backgroundColor:'grey'}}>
             <img src={headerImg} alt="shoe store" width='100%'/>
             <Header loadShoes={this.loadShoes} loadInfo={this.loadInfo} loadOrder={this.loadOrder}/>
-            {/* <PageContent shoes={this.state.shoes} view={this.state.view}/> */}
+            <PageContent shoes={this.state.shoes} view={this.state.view}/>
         </div>
     }
 }

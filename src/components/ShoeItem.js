@@ -1,20 +1,23 @@
-import React from 'react';
-import "../ShoeItem.css"
+import React from "react";
+import { Card } from "react-bootstrap";
+import "../ShoeItem.css";
 
-const ShoeItem = (props) =>{
-    return (
-        <div>
-            <div >
-                <div>>
-                    <img src={require(`../images/image${props.id}.jpg`)} alt="123" height="auto" width="100%" />
-                </div>
-                <div style={{textAlign:"center"}}>
-                    {props.name} <br/>
-                    Méret: {props.size}  Ár: {props.price}
-                </div>
-            </div>
-        </div>
-    )
-}
+const ShoeItem = (props) => {
+  return (
+    <Card >
+      <Card.Img
+        src={require(`../images/image${props.id}.jpg`)}
+        alt="123"
+      />
+      <Card.Body>
+        <Card.Title>{props.name}</Card.Title>
+        <Card.Text>
+          Méret:{props.size}<br/>
+          Ár:{props.price}
+        </Card.Text>
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default ShoeItem;

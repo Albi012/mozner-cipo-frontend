@@ -1,22 +1,34 @@
-import React from 'react';
-import ShoeItem from './ShoeItem'
+import React from "react";
+import { Row, Col ,Container} from "react-bootstrap";
+import ShoeItem from "./ShoeItem";
 
-class ShoeList extends React.Component{
+class ShoeList extends React.Component {
+  state = { shoeImages: [] };
 
-      state= {shoeImages : []};
-
-      render(){
-        const shoes = this.props.shoes.map(shoe => {
-          return <ShoeItem key={shoe.id} id={shoe.id} name={shoe.name} size={shoe.size} price={shoe.price} />;
-        });
-        return (
-        <div style={{margin : "auto",width:"80%", padding:"5px"}}>
-          <div style={{backgroundColor:"white",borderRadius:"25px"}}>
-            {shoes}
-          </div>
-        </div>
-        )
+  render() {
+    let rowContents = [];
+    const contents = this.props.shoes.reduce((acc, shoe, i) => {
+      rowContents.push(
+        <Col key={i} className="col col-md-3" style={{ width: '10rem',margin:'20px' }}>
+          <ShoeItem
+            key={shoe.id}
+            id={shoe.id}
+            name={shoe.name}
+            size={shoe.size}
+            price={shoe.price}
+          />
+        </Col>
+      );
+      if (i % 3 === 2) {
+        acc.push(<Row className="justify-content-md-center" style={{margin:'10px'}}>{rowContents}</Row>);
+        rowContents = [];
       }
+      return acc;
+    }, []);
+    contents.push(<Row className="justify-content-md-center" style={{margin:'10px'}}>{rowContents}</Row>);
+
+    return <Container fluid style={{margin:'10px',backgroundColor:'#b3b3b3',borderRadius:'25px'}}> {contents}</Container>;
+  }
 }
 
 export default ShoeList;
