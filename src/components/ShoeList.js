@@ -1,21 +1,32 @@
 import React from "react";
 import { Row, Col ,Container} from "react-bootstrap";
 import ShoeItem from "./ShoeItem";
+import axios from 'axios';
 
 class ShoeList extends React.Component {
-  state = { shoeImages: [] };
+  state = {shoes:[]};
+
+  componentDidMount() {
+    axios.get(`http://localhost:8080/shoes/`)
+      .then(res => {
+        const shoesData = res.data;
+        this.setState({ shoes : shoesData });
+      })
+  }
 
   render() {
     let rowContents = [];
-    const contents = this.props.shoes.reduce((acc, shoe, i) => {
+    const contents = this.state.shoes.reduce((acc, shoe, i) => {
       rowContents.push(
-        <Col key={i} className="col col-md-3" style={{ width: '10rem',margin:'20px' }}>
+        <Col key={shoe.id} className="col col-md-3" style={{ width: '10rem',margin:'20px' }}>
           <ShoeItem
             key={shoe.id}
             id={shoe.id}
             name={shoe.name}
             size={shoe.size}
             price={shoe.price}
+            quantity={shoe.quantity}
+            imgUrl={shoe.url}
           />
         </Col>
       );

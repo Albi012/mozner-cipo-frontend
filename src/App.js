@@ -5,7 +5,7 @@ import headerImg from "./images/header.jpg"
 import "./App.css"
 
 class App extends React.Component{
-    state={shoes :[{id:1,name:"test1",size:40,price:"10 000HUF"},{id:2,name:"test2",size:42,price:"10 000HUF"},{id:3,name:"test3",size:43,price:"10 000HUF"},{id:4,name:"test4",size:44,price:"10 000HUF"}],view:""}
+    state={view:""}
 
     loadShoes=()=>{
         console.log('cipo')
@@ -26,7 +26,7 @@ class App extends React.Component{
         return <div style={{backgroundColor:'grey'}}>
             <img src={headerImg} alt="shoe store" width='100%'/>
             <Header loadShoes={this.loadShoes} loadInfo={this.loadInfo} loadOrder={this.loadOrder}/>
-            <PageContent shoes={this.state.shoes} view={this.state.view}/>
+            <PageContent view={this.state.view}/>
         </div>
     }
 }
