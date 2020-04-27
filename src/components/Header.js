@@ -8,6 +8,9 @@ const Header = (props) => {
       <button className="btn btn-primary" style={{margin:'10px'}} onClick={props.loadShoes}>Cipők</button>
       <button className="btn btn-primary" style={{margin:'10px'}} onClick={props.loadInfo}>Rólunk</button>
       <button className="btn btn-primary" style={{margin:'10px'}} onClick={props.loadOrder}>Rendelés</button>
+      <button className="btn btn-primary" style={{margin:'10px'}} onClick={props.loadUploadForm}>Feltöltés</button>
+      {/* eslint-disable-next-line */}
+      <span role="img" style={{marginLeft:"auto", marginRight:"0",cursor:"pointer"}} onClick={props.loadLoginForm}>🔐</span>
     </Navbar>
   );
 };

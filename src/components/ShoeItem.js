@@ -13,8 +13,8 @@ const ShoeItem = (props) => {
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>
           Méret:{props.size}<br/>
-          Raktáron:{props.quantity}
-          Ár:{props.price}
+          Ár:{props.price}<br/>
+          Raktáron:{props.quantity}<br/>
         </Card.Text>
       </Card.Body>
     </Card>

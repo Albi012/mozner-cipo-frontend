@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import * as firebase from "firebase/app";
-import "firebase/storage";
+import firebaseApp from '../config/FireConfig'
+import { Form, Row, Col, Button } from "react-bootstrap";
 
 class UploadForm extends Component {
   state = { brand: "", name: "", size: "", image: "", price: "" };
@@ -19,7 +19,7 @@ class UploadForm extends Component {
     var headers = {
       "Content-Type": "application/json",
     };
-    const storageRef = firebase.storage().ref();
+    const storageRef = firebaseApp.storage().ref();
     const uploadTask = storageRef
       .child(this.state.image.name)
       .put(this.state.image);
@@ -33,13 +33,17 @@ class UploadForm extends Component {
           .getDownloadURL()
           .then((url) => {
             axios
-              .post(`http://localhost:8080/save-new-shoe/`, {
-                brand: this.state.brand,
-                name: this.state.name,
-                price: this.state.price,
-                size: this.state.size,
-                url: url,
-              },headers)
+              .post(
+                `http://localhost:8080/save-new-shoe/`,
+                {
+                  brand: this.state.brand,
+                  name: this.state.name,
+                  price: this.state.price,
+                  size: this.state.size,
+                  url: url,
+                },
+                headers
+              )
               .then((res) => {
                 console.log(res);
               });
@@ -66,36 +70,62 @@ class UploadForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleUpload}>
-        <div>
-          <label>Márka:</label>
-          <input
-            type="text"
-            value={this.state.brand}
-            onChange={this.handleBrandChange}
-          />
-          <label>Név:</label>
-          <input
-            type="text"
-            value={this.state.name}
-            onChange={this.handleNameChange}
-          />
-          <label>Méret:</label>
-          <input
-            type="text"
-            value={this.state.size}
-            onChange={this.handleSizeChange}
-          />
-          <label>Ár:</label>
-          <input
-            type="text"
-            value={this.state.price}
-            onChange={this.handlePriceChange}
-          />
-          <input type="file" onChange={this.handleFileChange}></input>
-          <button type="submit">Upload!</button>
-        </div>
-      </form>
+      <div>
+        <Form onSubmit={this.handleUpload}>
+          <Row style={{ margin: "10px" }}>
+            <Col>
+              <Form.Control
+                placeholder="Márka"
+                type="text"
+                value={this.state.brand}
+                onChange={this.handleBrandChange}
+              />
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
+            <Col>
+              <Form.Control
+                placeholder="Név"
+                type="text"
+                value={this.state.name}
+                onChange={this.handleNameChange}
+              />
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
+            <Col>
+              <Form.Control
+                placeholder="Méret"
+                type="number"
+                value={this.state.size}
+                onChange={this.handleSizeChange}
+              />
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
+            <Col>
+              <Form.Control
+                placeholder="Ár"
+                type="text"
+                value={this.state.price}
+                onChange={this.handlePriceChange}
+              />
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
+            <Col style={{textAlign: "center"}}>
+              <Form.File>
+                <Form.File.Input onChange={this.handleFileChange} />
+              </Form.File>
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
+            <Col style={{textAlign: "center"}}>
+              <Button type="submit">Feltöltés!</Button>
+            </Col>
+          </Row>
+        </Form>
+      </div>
     );
   }
 }

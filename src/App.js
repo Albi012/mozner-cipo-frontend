@@ -1,34 +1,63 @@
-import React from 'react';
-import Header from './components/Header'
-import PageContent from './components/PageContent';
-import headerImg from "./images/header.jpg"
-import "./App.css"
+import React from "react";
+import Header from "./components/Header";
+import PageContent from "./components/PageContent";
+import headerImg from "./images/header.jpg";
+import "./App.css";
+import firebaseApp from "./config/FireConfig";
 
-class App extends React.Component{
-    state={view:""}
+class App extends React.Component {
+  state = { view: "",user:null };
 
-    loadShoes=()=>{
-        console.log('cipo')
-        this.setState({view:"shoes"});
+  loadShoes = () => {
+    this.setState({ view: "shoes" });
+  };
+
+  loadInfo = () => {
+    this.setState({ view: "info" });
+  };
+
+  loadOrder = () => {
+    this.setState({ view: "order" });
+  };
+
+  loadLoginForm = () => {
+    this.setState({ view: "login" });
+  };
+
+  loadUploadForm = () => {
+    this.setState({ view: "upload" });
+  };
+
+
+  componentDidMount() {
+    // firebaseApp.auth().onAuthStateChanged((user)=>{
+    //     console.log(user)
+    // })
+    var currentUser = firebaseApp.auth().currentUser
+    if (currentUser != null) {
+      this.setState({user:currentUser});
+      console.log(currentUser)
+    } else {
+      this.setState({user:null});
     }
+  }
 
-    loadInfo=()=>{
-        console.log("info")
-        this.setState({view:"info"});
-    }
-
-    loadOrder=()=>{
-        console.log("order")
-        this.setState({view:"order"});
-    }
-
-    render(){
-        return <div style={{backgroundColor:'grey'}}>
-            <img src={headerImg} alt="shoe store" width='100%'/>
-            <Header loadShoes={this.loadShoes} loadInfo={this.loadInfo} loadOrder={this.loadOrder}/>
-            <PageContent view={this.state.view}/>
-        </div>
-    }
+  render() {
+    return (
+      <div style={{ backgroundColor: "grey" }}>
+        <img src={headerImg} alt="shoe store" width="100%" />
+        <Header
+          user={this.state.user}
+          loadShoes={this.loadShoes}
+          loadInfo={this.loadInfo}
+          loadOrder={this.loadOrder}
+          loadUploadForm={this.loadUploadForm}
+          loadLoginForm={this.loadLoginForm}
+        />
+        <PageContent view={this.state.view} />
+      </div>
+    );
+  }
 }
 
 export default App;
