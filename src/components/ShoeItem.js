@@ -7,14 +7,14 @@ const ShoeItem = (props) => {
     <Card >
       <Card.Img
         src={props.imgUrl}
-        alt="123"
+        alt={props.name}
       />
       <Card.Body>
         <Card.Title>{props.name}</Card.Title>
         <Card.Text>
+          Márka:{props.brand}<br/>
           Méret:{props.size}<br/>
-          Ár:{props.price}<br/>
-          Raktáron:{props.quantity}<br/>
+          Ár:{props.price}.Ft<br/>
         </Card.Text>
       </Card.Body>
     </Card>

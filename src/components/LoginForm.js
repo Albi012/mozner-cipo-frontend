@@ -13,9 +13,9 @@ class LoginForm extends Component {
     this.setState({ pass: event.target.value });
   };
 
-  handleSignOut=(event)=>{
-    firebaseApp.auth().signOut()
-  }
+  handleSignOut = (event) => {
+    firebaseApp.auth().signOut();
+  };
 
   handleLogin = (event) => {
     event.preventDefault();
@@ -29,7 +29,15 @@ class LoginForm extends Component {
     return (
       <div>
         <div>
-          <Form onSubmit={this.handleLogin}>
+          <Form
+            onSubmit={this.handleLogin}
+            style={{
+              backgroundColor: "#b3b3b3",
+              borderRadius: "25px",
+              padding: "10px",
+              margin:'10px'
+            }}
+          >
             <Row style={{ margin: "10px" }}>
               <Col>
                 <Form.Control
@@ -44,7 +52,7 @@ class LoginForm extends Component {
                 <Form.Control
                   onChange={this.handlePassChange}
                   placeholder="Jelszó"
-                  type="text"
+                  type="password"
                 />
               </Col>
             </Row>

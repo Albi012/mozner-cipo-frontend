@@ -16,6 +16,10 @@ class App extends React.Component {
     this.setState({ view: "info" });
   };
 
+  loadEditor = () => {
+    this.setState({ view: "edit" });
+  };
+
   loadOrder = () => {
     this.setState({ view: "order" });
   };
@@ -53,6 +57,7 @@ class App extends React.Component {
           loadOrder={this.loadOrder}
           loadUploadForm={this.loadUploadForm}
           loadLoginForm={this.loadLoginForm}
+          loadEditor={this.loadEditor}
         />
         <PageContent view={this.state.view} />
       </div>

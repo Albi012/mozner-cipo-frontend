@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
-import firebaseApp from '../config/FireConfig'
+import firebaseApp from "../config/FireConfig";
+import ShoeEditList from "./ShoeEditList";
 import { Form, Row, Col, Button } from "react-bootstrap";
 
 class UploadForm extends Component {
@@ -71,7 +72,15 @@ class UploadForm extends Component {
   render() {
     return (
       <div>
-        <Form onSubmit={this.handleUpload}>
+        <Form
+          onSubmit={this.handleUpload}
+          style={{
+            backgroundColor: "#b3b3b3",
+            borderRadius: "25px",
+            padding: "10px",
+            margin:'10px'
+          }}
+        >
           <Row style={{ margin: "10px" }}>
             <Col>
               <Form.Control
@@ -106,25 +115,26 @@ class UploadForm extends Component {
             <Col>
               <Form.Control
                 placeholder="Ár"
-                type="text"
+                type="number"
                 value={this.state.price}
                 onChange={this.handlePriceChange}
               />
             </Col>
           </Row>
           <Row style={{ margin: "10px" }}>
-            <Col style={{textAlign: "center"}}>
+            <Col style={{ textAlign: "center" }}>
               <Form.File>
                 <Form.File.Input onChange={this.handleFileChange} />
               </Form.File>
             </Col>
           </Row>
           <Row style={{ margin: "10px" }}>
-            <Col style={{textAlign: "center"}}>
+            <Col style={{ textAlign: "center" }}>
               <Button type="submit">Feltöltés!</Button>
             </Col>
           </Row>
         </Form>
+        <ShoeEditList />
       </div>
     );
   }
