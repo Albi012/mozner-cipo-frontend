@@ -11,7 +11,7 @@ import UploadForm from './UploadForm'
 export default function PageContent(props) {
     return (
         <Container>
-            {props.view==="shoes" ? <ShoeList/> : props.view==="info" ? <InfoBox/> : props.view==="order" ? <OrderBox/>: props.view==="upload" ? <UploadForm/>: props.view==="edit" ? <ShoeEditList/>: props.view==="login" ? <LoginForm/> : <ShoeList/>}
+            {props.view==="shoes" ? <ShoeList category={props.category} brand={props.brand}/> : props.view==="info" ? <InfoBox/> : props.view==="order" ? <OrderBox/>: props.view==="upload" ? <UploadForm/>: props.view==="edit" ? <ShoeEditList/>: props.view==="login" ? <LoginForm/> : <div>helo</div>}
         </Container>
     )
 }

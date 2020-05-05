@@ -15,11 +15,7 @@ export default function OrderBox() {
     >
       <h2>Rendelés menete:</h2>
       <p>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
+        
       </p>
     </Container>
   );
