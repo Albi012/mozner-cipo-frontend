@@ -1,11 +1,18 @@
 import React, { Component } from "react";
 import axios from "axios";
 import firebaseApp from "../config/FireConfig";
-import ShoeEditList from "./ShoeEditList";
-import { Form, Row, Col, Button } from "react-bootstrap";
+// import ShoeEditList from "./ShoeEditList";
+import {
+  Form,
+  Row,
+  Col,
+  Button,
+  DropdownButton,
+  Dropdown,
+} from "react-bootstrap";
 
 class UploadForm extends Component {
-  state = { brand: "", name: "", size: "", image: "", price: "" };
+  state = { brand: "",shoeNumber:"", size: "", image: "", price: "", category: "" };
 
   handleFileChange = (event) => {
     if (event.target.files[0]) {
@@ -38,9 +45,10 @@ class UploadForm extends Component {
                 `http://localhost:8080/save-new-shoe/`,
                 {
                   brand: this.state.brand,
-                  name: this.state.name,
+                  shoeNumber: this.state.shoeNumber,
                   price: this.state.price,
                   size: this.state.size,
+                  category: this.state.category,
                   url: url,
                 },
                 headers
@@ -53,12 +61,17 @@ class UploadForm extends Component {
     );
   };
 
-  handleBrandChange = (event) => {
-    this.setState({ brand: event.target.value });
+  handleCategorySelect = (event) => {
+    this.setState({ category: event });
   };
 
-  handleNameChange = (event) => {
-    this.setState({ name: event.target.value });
+  handleBrandChange = (event) => {
+    this.setState({ brand: event.target.value });
+    console.log(this.state)
+  };
+
+  handleShoeNumberChange = (event) => {
+    this.setState({ shoeNumber: event.target.value });
   };
 
   handleSizeChange = (event) => {
@@ -78,7 +91,7 @@ class UploadForm extends Component {
             backgroundColor: "#b3b3b3",
             borderRadius: "25px",
             padding: "10px",
-            margin:'10px'
+            margin: "10px",
           }}
         >
           <Row style={{ margin: "10px" }}>
@@ -94,10 +107,10 @@ class UploadForm extends Component {
           <Row style={{ margin: "10px" }}>
             <Col>
               <Form.Control
-                placeholder="Név"
+                placeholder="Szám"
                 type="text"
-                value={this.state.name}
-                onChange={this.handleNameChange}
+                value={this.state.shoeNumber}
+                onChange={this.handleShoeNumberChange}
               />
             </Col>
           </Row>
@@ -122,6 +135,15 @@ class UploadForm extends Component {
             </Col>
           </Row>
           <Row style={{ margin: "10px" }}>
+            <Col>
+              <DropdownButton onSelect={this.handleCategorySelect} title="Kategória">
+                <Dropdown.Item eventKey="men">Férfi</Dropdown.Item>
+                <Dropdown.Item eventKey="women">Női</Dropdown.Item>
+                <Dropdown.Item eventKey="child">Gyerek</Dropdown.Item>
+              </DropdownButton>
+            </Col>
+          </Row>
+          <Row style={{ margin: "10px" }}>
             <Col style={{ textAlign: "center" }}>
               <Form.File>
                 <Form.File.Input onChange={this.handleFileChange} />
@@ -134,7 +156,6 @@ class UploadForm extends Component {
             </Col>
           </Row>
         </Form>
-        <ShoeEditList />
       </div>
     );
   }

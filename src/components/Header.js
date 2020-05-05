@@ -17,7 +17,7 @@ class Header extends React.Component {
   }
 
   handleClick = (brand,category) => {
-    this.props.onSelectBrandAndCategory(brand,category);            
+    this.props.onSelectBrandAndCategory(brand,category); 
 }
 
   render() {

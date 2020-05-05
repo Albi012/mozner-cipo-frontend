@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import PageContent from "./components/PageContent";
 import headerImg from "./images/header.jpg";
 import "./App.css";
-import firebaseApp from "./config/FireConfig";
+//import firebaseApp from "./config/FireConfig";
 
 class App extends React.Component {
   state = { view: "", user: null, brand: "", category: "" };
