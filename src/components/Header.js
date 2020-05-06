@@ -16,13 +16,21 @@ class Header extends React.Component {
     });
   }
 
-  handleClick = (brand,category) => {
-    console.log(brand,category)
+  handleShoeCategorySelect = (brand,category) => {
     var url = `http://localhost:8080/shoes/${brand}/${category}`
     axios.get(url).then((res) => {
       this.props.setShoes(res.data)
     });
 }
+
+  handleItemCategorySelect=(event)=>{
+    var url = `http://localhost:8080/items/${event.target.value}`
+    console.log(url);
+    const category = event.target.value
+    axios.get(url).then((res) => {
+      this.props.setItems(res.data,category)
+    });
+  }
 
   render() {
     return (
@@ -35,21 +43,53 @@ class Header extends React.Component {
           <Nav className="mr-auto">
             <DropdownButton className="btn btn-primary" title="Férfi">
               {this.state.menBrands.map((brand) => (
-                <Dropdown.Item onSelect={()=>this.handleClick(brand,"men")} >
+                <Dropdown.Item onSelect={() => this.handleShoeCategorySelect(brand, "men")}>
                   {brand}
                 </Dropdown.Item>
               ))}
             </DropdownButton>
             <DropdownButton className="btn btn-primary" title="Női">
               {this.state.womenBrands.map((brand) => (
-                <Dropdown.Item onSelect={()=>this.handleClick(brand,"women")}>{brand}</Dropdown.Item>
+                <Dropdown.Item
+                  onSelect={() => this.handleShoeCategorySelect(brand, "women")}
+                >
+                  {brand}
+                </Dropdown.Item>
               ))}
             </DropdownButton>
             <DropdownButton className="btn btn-primary" title="Gyerek">
               {this.state.childBrands.map((brand) => (
-                <Dropdown.Item onSelect={()=>this.handleClick(brand,"child")}>{brand}</Dropdown.Item>
+                <Dropdown.Item
+                  onSelect={() => this.handleShoeCategorySelect(brand, "child")}
+                >
+                  {brand}
+                </Dropdown.Item>
               ))}
             </DropdownButton>
+            <button
+              className="btn btn-primary"
+              style={{ margin: "10px" }}
+              value="bag"
+              onClick={this.handleItemCategorySelect}
+            >
+              Táska
+            </button>
+            <button
+              className="btn btn-primary"
+              style={{ margin: "10px" }}
+              value="accessories"
+              onClick={this.handleItemCategorySelect}
+            >
+              Kiegészítők
+            </button>
+            <button
+              className="btn btn-primary"
+              style={{ margin: "10px" }}
+              value="mask"
+              onClick={this.handleItemCategorySelect}
+            >
+              Maszk
+            </button>
             <button
               className="btn btn-primary"
               style={{ margin: "10px" }}
