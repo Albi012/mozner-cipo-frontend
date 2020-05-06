@@ -2,8 +2,7 @@ import React from "react";
 import { Card, Modal, Button } from "react-bootstrap";
 
 class ItemCard extends React.Component {
-
-  state={show:false}
+  state = { show: false };
 
   handleShow = () => {
     this.setState({ show: true });
@@ -19,10 +18,8 @@ class ItemCard extends React.Component {
             <Modal.Title>Rendelés menete:</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            Választott márkája és száma: {this.props.brand}
-            {this.props.shoeNumber}
+            Választott termék neve: {this.props.name}
             <br />
-            Választott méret:{Object.values(this.state.selectedSize)}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>
@@ -41,6 +38,10 @@ class ItemCard extends React.Component {
             {this.props.name}
             <br />
             Ár:{this.props.price}.Ft
+            <br />
+            <Button variant="success" onClick={this.handleShow}>
+              Rendelés
+            </Button>
           </Card.Text>
         </Card.Body>
       </Card>

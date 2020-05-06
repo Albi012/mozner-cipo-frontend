@@ -3,7 +3,7 @@ import { Container } from "react-bootstrap";
 import ShoeList from "./ShoeList";
 import InfoBox from "./InfoBox";
 import LoginForm from "./LoginForm";
-import ShoeEditList from "./ShoeEditList";
+import Editor from './Editor'
 import OrderBox from "./OrderBox";
 import UploadForm from "./UploadForm";
 import ItemList from './ItemList'
@@ -22,7 +22,7 @@ class PageContent extends React.Component {
         ) : this.props.view === "upload" ? (
           <UploadForm />
         ) : this.props.view === "edit" ? (
-          <ShoeEditList />
+          <Editor/>
         ) : this.props.view === "login" ? (
           <LoginForm />
         ) : this.props.view === "bag" ? (
