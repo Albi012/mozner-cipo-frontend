@@ -9,6 +9,7 @@ import UploadForm from "./UploadForm";
 import ItemList from './ItemList'
 
 class PageContent extends React.Component {
+  
   render() {
     return (
       <Container>
@@ -30,7 +31,7 @@ class PageContent extends React.Component {
           <ItemList items={this.props.items} />
         ) : this.props.view === "mask" ? (
           <ItemList items={this.props.items} />
-        ) : <div>helo</div>}
+        ) : <ShoeList shoes={this.props.shoes}/>}
       </Container>
     );
   }

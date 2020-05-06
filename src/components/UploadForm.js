@@ -62,7 +62,7 @@ class UploadForm extends Component {
                 headers
               )
               .then((res) => {
-                console.log(res);
+                alert("A feltöltés sikeres!")
               });
           });
       }
@@ -98,7 +98,7 @@ class UploadForm extends Component {
                 headers
               )
               .then((res) => {
-                console.log(res);
+                alert("A feltöltés sikeres!")
               });
           });
       }

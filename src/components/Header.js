@@ -3,8 +3,14 @@ import axios from "axios";
 import { Navbar, Nav, DropdownButton, Dropdown } from "react-bootstrap";
 
 class Header extends React.Component {
-  state = {shoes:[], menBrands: [], womenBrands: [], childBrands: [] };
+  state = {shoes:null, menBrands: [], womenBrands: [], childBrands: [] };
   componentDidMount() {
+    if(this.state.shoes === null){
+      var url = `http://localhost:8080/shoes/`
+      axios.get(url).then((res) => {
+        console.log("lefut")
+        this.props.setShoes(res.data)
+      });}
     axios.get(`http://localhost:8080/brands/men`).then((res) => {
       this.setState({ menBrands: res.data });
     });
