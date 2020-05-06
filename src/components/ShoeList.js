@@ -4,6 +4,14 @@ import ShoeItem from "./ShoeItem";
 
 class ShoeList extends React.Component {
 
+  state={shoes:[]}
+
+  componentDidMount() {
+    this.setState({shoes:this.props.shoes})
+  }
+
+  
+
   render() {
     let rowContents = [];
     const contents = this.props.shoes.reduce((acc, shoe, i) => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { Navbar, Nav, DropdownButton, Dropdown } from "react-bootstrap";
 
 class Header extends React.Component {
-  state = { menBrands: [], womenBrands: [], childBrands: [] };
+  state = {shoes:[], menBrands: [], womenBrands: [], childBrands: [] };
   componentDidMount() {
     axios.get(`http://localhost:8080/brands/men`).then((res) => {
       this.setState({ menBrands: res.data });
@@ -17,7 +17,11 @@ class Header extends React.Component {
   }
 
   handleClick = (brand,category) => {
-    this.props.onSelectBrandAndCategory(brand,category); 
+    console.log(brand,category)
+    var url = `http://localhost:8080/shoes/${brand}/${category}`
+    axios.get(url).then((res) => {
+      this.props.setShoes(res.data)
+    });
 }
 
   render() {
