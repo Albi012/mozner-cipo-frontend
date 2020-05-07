@@ -19,7 +19,7 @@ class PageContent extends React.Component {
           <InfoBox />
         ) : this.props.view === "order" ? (
           <OrderBox />
-        ) : this.props.view === "upload" ? (
+        ) : this.props.view === "upload"? (
           <UploadForm />
         ) : this.props.view === "edit" ? (
           <Editor/>

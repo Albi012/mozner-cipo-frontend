@@ -15,14 +15,23 @@ class LoginForm extends Component {
 
   handleSignOut = (event) => {
     firebaseApp.auth().signOut();
+    localStorage.setItem("user",null)
   };
 
   handleLogin = (event) => {
     event.preventDefault();
-    const promise = firebaseApp
+    firebaseApp
       .auth()
-      .signInWithEmailAndPassword(this.state.email, this.state.pass);
-    promise.catch((event) => console.log(event.message));
+      .signInWithEmailAndPassword(this.state.email, this.state.pass)
+      .catch((error) => alert("Nincs ilyen felhasználó!"));
+    firebaseApp.auth().onAuthStateChanged(function (user) {
+      if (user) {
+        localStorage.setItem("user", user.uid);
+        alert("Sikeres bejelentkezés!");
+      } else {
+        localStorage.setItem("user", null);
+      }
+    });
   };
 
   render() {
@@ -35,7 +44,7 @@ class LoginForm extends Component {
               backgroundColor: "#b3b3b3",
               borderRadius: "25px",
               padding: "10px",
-              margin:'10px'
+              margin: "10px",
             }}
           >
             <Row style={{ margin: "10px" }}>
@@ -57,12 +66,15 @@ class LoginForm extends Component {
               </Col>
             </Row>
             <Row style={{ margin: "10px" }}>
-              <Col style={{ textAlign: "center" }}>
-                <Button type="submit">Login!</Button>
-              </Col>
-              <Col>
-                <Button onClick={this.handleSignOut}>Logout!</Button>
-              </Col>
+              {localStorage.getItem("user") !== "null" ? (
+                <Col style={{ textAlign: "center" }}>
+                  <Button onClick={this.handleSignOut}>Kijelentkezés!</Button>
+                </Col>
+              ) : (
+                <Col>
+                  <Button type="submit">Bejelentketés!</Button>
+                </Col>
+              )}
             </Row>
           </Form>
         </div>

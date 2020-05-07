@@ -3,14 +3,15 @@ import axios from "axios";
 import { Navbar, Nav, DropdownButton, Dropdown } from "react-bootstrap";
 
 class Header extends React.Component {
-  state = {shoes:null, menBrands: [], womenBrands: [], childBrands: [] };
+  state = { shoes: null, menBrands: [], womenBrands: [], childBrands: [] ,user:false};
   componentDidMount() {
-    if(this.state.shoes === null){
-      var url = `http://localhost:8080/shoes/`
+    if (this.state.shoes === null) {
+      var url = `http://localhost:8080/shoes/`;
       axios.get(url).then((res) => {
-        console.log("lefut")
-        this.props.setShoes(res.data)
-      });}
+        console.log("lefut");
+        this.props.setShoes(res.data);
+      });
+    }
     axios.get(`http://localhost:8080/brands/men`).then((res) => {
       this.setState({ menBrands: res.data });
     });
@@ -20,23 +21,29 @@ class Header extends React.Component {
     axios.get(`http://localhost:8080/brands/child`).then((res) => {
       this.setState({ childBrands: res.data });
     });
+    if (localStorage.getItem("user") !== "null") {
+      console.log(localStorage.getItem("user"));
+      this.setState({ user: true });
+    } else {
+      this.setState({ user: false });
+    }
   }
 
-  handleShoeCategorySelect = (brand,category) => {
-    var url = `http://localhost:8080/shoes/${brand}/${category}`
+  handleShoeCategorySelect = (brand, category) => {
+    var url = `http://localhost:8080/shoes/${brand}/${category}`;
     axios.get(url).then((res) => {
-      this.props.setShoes(res.data)
+      this.props.setShoes(res.data);
     });
-}
+  };
 
-  handleItemCategorySelect=(event)=>{
-    var url = `http://localhost:8080/items/${event.target.value}`
+  handleItemCategorySelect = (event) => {
+    var url = `http://localhost:8080/items/${event.target.value}`;
     console.log(url);
-    const category = event.target.value
+    const category = event.target.value;
     axios.get(url).then((res) => {
-      this.props.setItems(res.data,category)
+      this.props.setItems(res.data, category);
     });
-  }
+  };
 
   render() {
     return (
@@ -49,7 +56,9 @@ class Header extends React.Component {
           <Nav className="mr-auto">
             <DropdownButton className="btn btn-primary" title="Férfi">
               {this.state.menBrands.map((brand) => (
-                <Dropdown.Item onSelect={() => this.handleShoeCategorySelect(brand, "men")}>
+                <Dropdown.Item
+                  onSelect={() => this.handleShoeCategorySelect(brand, "men")}
+                >
                   {brand}
                 </Dropdown.Item>
               ))}
@@ -103,6 +112,7 @@ class Header extends React.Component {
             >
               Rólunk
             </button>
+            {this.state.user === true ?<p>
             <button
               className="btn btn-primary"
               style={{ margin: "10px" }}
@@ -116,7 +126,7 @@ class Header extends React.Component {
               onClick={this.props.loadEditor}
             >
               Szerkesztés
-            </button>
+            </button></p> : <p></p>}
           </Nav>
         </Navbar.Collapse>
         {/* eslint-disable-next-line */}

@@ -40,19 +40,6 @@ class App extends React.Component {
     this.setState({ view: "upload" });
   };
 
-  componentDidMount() {
-    // firebaseApp.auth().onAuthStateChanged((user) => {
-    //   console.log(user);
-    // });
-    // var currentUser = firebaseApp.auth().currentUser
-    // if (currentUser != null) {
-    //   this.setState({user:currentUser});
-    //   console.log(currentUser)
-    // } else {
-    //   this.setState({user:null});
-    // }
-  }
-
   render() {
     return (
       <div style={{ backgroundColor: "grey" }}>
