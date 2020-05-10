@@ -58,6 +58,7 @@ class UploadForm extends Component {
                   price: this.state.price,
                   size: this.state.size,
                   category: this.state.category,
+                  onSale:this.state.onSale,
                   url: url,
                 },
                 headers
@@ -121,7 +122,6 @@ class UploadForm extends Component {
 
   handleBrandChange = (event) => {
     this.setState({ brand: event.target.value });
-    console.log(this.state)
   };
   handleNameChange = (event) => {
     this.setState({ name: event.target.value });
@@ -158,7 +158,7 @@ class UploadForm extends Component {
               value="other"
               onClick={this.handleFormTypeChange}
             >
-              Egyéb
+              Kiegészítő
             </button>
           </Col>
         </Row>

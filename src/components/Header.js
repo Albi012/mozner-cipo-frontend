@@ -20,7 +20,7 @@ class Header extends React.Component {
     axios.get(`http://localhost:8080/brands/child`).then((res) => {
       this.setState({ childBrands: res.data });
     });
-    if (localStorage.getItem("user") !== "null") {
+    if (localStorage.getItem("user") !== null && localStorage.getItem("user") !== "null") {
       console.log(localStorage.getItem("user"));
       this.setState({ user: true });
     } else {
@@ -36,7 +36,10 @@ class Header extends React.Component {
   };
 
   handleOnSaleSelect=()=>{
-    
+    var url = `http://localhost:8080/shoes/on-sale`
+    axios.get(url).then((res) => {
+      this.props.setOnSaleShoes(res.data);
+    });
   }
 
   handleAccessoriesSelect = (event) => {

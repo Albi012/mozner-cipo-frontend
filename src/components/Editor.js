@@ -44,24 +44,24 @@ class Editor extends Component {
         alert("A törlés sikeres!");
       });
   };
-  handleShoeQuantityIncrease= (event) => {
+  addShoeSize= (event) => {
     event.preventDefault();
     axios
       .get(
-        `http://localhost:8080/shoe/increase/${this.state.brand}/${this.state.shoeNumber}/${this.state.size}`
+        `http://localhost:8080/shoe/add/${this.state.brand}/${this.state.shoeNumber}/${this.state.size}`
       )
       .then((res) => {
-        alert("A növelés sikeres!");
+        alert("A méret hozzáadás sikeres!");
       });
   };
-  handleShoeQuantityDecrease = (event) => {
+  removeShoeSize = (event) => {
     event.preventDefault();
     axios
       .get(
-        `http://localhost:8080/shoe/decrease/${this.state.brand}/${this.state.shoeNumber}/${this.state.size}`
+        `http://localhost:8080/shoe/delete/${this.state.brand}/${this.state.shoeNumber}/${this.state.size}`
       )
       .then((res) => {
-        alert("A csökkentés sikeres!");
+        alert("A méret törlése sikeres!");
       });
   };
 
@@ -90,19 +90,19 @@ class Editor extends Component {
           <Col style={{ textAlign: "center" }}>
             <button
               className="btn btn-primary"
-              value="shoeQuantityIncrease"
+              value="addShoeSize"
               onClick={this.handleFormTypeChange}
             >
-              Cipő méret növelése
+              Cipő méret hozzáadása
             </button>
           </Col>
           <Col style={{ textAlign: "center" }}>
             <button
               className="btn btn-primary"
-              value="shoeQuantityDecrease"
+              value="removeShoeSize"
               onClick={this.handleFormTypeChange}
             >
-              Cipő méret csökkentése
+              Cipő méret törlése
             </button>
           </Col>
           <Col style={{ textAlign: "center" }}>
@@ -111,7 +111,7 @@ class Editor extends Component {
               value="itemDelete"
               onClick={this.handleFormTypeChange}
             >
-              Egyéb cikk törlése
+              Kiegészítő törlése!
             </button>
           </Col>
         </Row>
@@ -139,8 +139,8 @@ class Editor extends Component {
               </Col>
             </Row>
           </Form>
-        ) : this.state.formType === "shoeQuantityIncrease" ? (
-          <Form onSubmit={this.handleShoeQuantityIncrease}>
+        ) : this.state.formType === "addShoeSize" ? (
+          <Form onSubmit={this.addShoeSize}>
             <Row style={{ margin: "10px" }}>
               <Col>
                 <Form.Control
@@ -167,12 +167,12 @@ class Editor extends Component {
                 />
               </Col>
               <Col style={{ textAlign: "center" }}>
-                <Button type="submit">Növelés!</Button>
+                <Button type="submit">Hozzáadás!</Button>
               </Col>
             </Row>
           </Form>
-        ) : this.state.formType === "shoeQuantityDecrease" ? (
-          <Form onSubmit={this.handleShoeQuantityDecrease}>
+        ) : this.state.formType === "removeShoeSize" ? (
+          <Form onSubmit={this.removeShoeSize}>
             <Row style={{ margin: "10px" }}>
               <Col>
                 <Form.Control
@@ -199,7 +199,7 @@ class Editor extends Component {
                 />
               </Col>
               <Col style={{ textAlign: "center" }}>
-                <Button type="submit">Csökkentés!</Button>
+                <Button type="submit">Törlés!</Button>
               </Col>
             </Row>
           </Form>

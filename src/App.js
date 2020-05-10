@@ -13,7 +13,7 @@ class App extends React.Component {
   };
 
   setOnSaleShoes=(shoesData)=>{
-    this.setShoes({shoes:shoesData,view:"onSale"})
+    this.setState({shoes:shoesData,view:"onSale"})
   }
 
   setItems=(itemData)=>{
