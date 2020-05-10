@@ -6,26 +6,27 @@ import "./App.css";
 //import firebaseApp from "./config/FireConfig";
 
 class App extends React.Component {
-  state = { view: "", user: null, shoes: [] };
+  state = { view: "", user: null, shoes: [],items:[] };
 
   setShoes = (shoesData) => {
-    this.setState({ shoes: shoesData, view: "shoes",items:[]});
+    this.setState({ shoes: shoesData, view: "shoes"});
   };
-  setItems=(itemData,category)=>{
-    this.setState({items:itemData,view:category})
+
+  setOnSaleShoes=(shoesData)=>{
+    this.setShoes({shoes:shoesData,view:"onSale"})
+  }
+
+  setItems=(itemData)=>{
+    this.setState({items:itemData})
+    this.loadAccessories();
   }
 
   loadInfo = () => {
     this.setState({ view: "info" });
   };
-  loadBags = () => {
-    this.setState({ view: "bag"});
-  };
+
   loadAccessories = () => {
     this.setState({ view: "accessories"});
-  };
-  loadMasks = () => {
-    this.setState({ view: "mask" });
   };
 
   loadEditor = () => {
@@ -45,6 +46,7 @@ class App extends React.Component {
       <div style={{ backgroundColor: "grey" }}>
         <img src={headerImg} alt="shoe store" width="100%" />
         <Header
+          setOnSaleShoes={this.setOnSaleShoes}
           setShoes={this.setShoes}
           user={this.state.user}
           setItems={this.setItems}          

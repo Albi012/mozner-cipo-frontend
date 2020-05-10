@@ -5,8 +5,8 @@ import "../ShoeItem.css";
 class ShoeItem extends React.Component {
   state = { selectedSize: "", show: false };
 
-  handleSizeSelect = (key) => {
-    this.setState({ selectedSize: key });
+  handleSizeSelect = (size) => {
+    this.setState({ selectedSize: size });
   };
 
   handleShow = () => {
@@ -17,13 +17,13 @@ class ShoeItem extends React.Component {
   };
 
   render() {
-    const sizeDropdown = this.props.sizeKeys.map((key) => (
+    const sizeDropdown = this.props.sizes.map((size) => (
       <Dropdown.Item
-        key={key}
-        value={key}
-        onSelect={() => this.handleSizeSelect({ key })}
+        key={size}
+        value={size}
+        onSelect={() => this.handleSizeSelect({ size })}
       >
-        {key}
+        {size}
       </Dropdown.Item>
     ));
     const modal = (
@@ -34,7 +34,9 @@ class ShoeItem extends React.Component {
           </Modal.Header>
           <Modal.Body>
             Választott márkája és száma: {this.props.brand} {this.props.shoeNumber}<br/>
-            Választott méret:{Object.values(this.state.selectedSize)}
+            Választott méret: {Object.values(this.state.selectedSize)}<br/>
+            Ár: {this.props.price} Huf(Termék ára) + 2000 Huf(Postaköltség)<br/>
+            Összesen: {parseInt(this.props.price)}
             </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.handleClose}>

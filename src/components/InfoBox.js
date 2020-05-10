@@ -22,7 +22,7 @@ class InfoBox extends React.Component {
           <b>Mobil: (30) 505 4749</b>
         </p>
         <p>
-          <b>Cím: Aszód, Kossuth Lajos utca 3.</b>
+          <b>Cím: Aszód, Kossuth Lajos utca 5.</b>
         </p>
         <p>
           <b>

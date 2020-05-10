@@ -24,7 +24,7 @@ class ShoeList extends React.Component {
             url={shoe.url}
             brand={shoe.brand}
             price={shoe.price}
-            sizeKeys={Object.keys(shoe.size)}
+            sizes={shoe.size}
           />
         </Col>
       );

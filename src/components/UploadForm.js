@@ -19,6 +19,7 @@ class UploadForm extends Component {
     image: "",
     price: "",
     category: "",
+    onSale: false,
     formType: "",
   };
 
@@ -62,7 +63,7 @@ class UploadForm extends Component {
                 headers
               )
               .then((res) => {
-                alert("A feltöltés sikeres!")
+                alert("A feltöltés sikeres!");
               });
           });
       }
@@ -98,11 +99,16 @@ class UploadForm extends Component {
                 headers
               )
               .then((res) => {
-                alert("A feltöltés sikeres!")
+                alert("A feltöltés sikeres!");
               });
           });
       }
     );
+  };
+
+  handelOnSaleChange = () => {
+    console.log(this.state.onSale);
+    this.setState({ onSale: !this.state.onSale });
   };
 
   handleFormTypeChange = (event) => {
@@ -115,6 +121,7 @@ class UploadForm extends Component {
 
   handleBrandChange = (event) => {
     this.setState({ brand: event.target.value });
+    console.log(this.state)
   };
   handleNameChange = (event) => {
     this.setState({ name: event.target.value });
@@ -207,6 +214,15 @@ class UploadForm extends Component {
             </Row>
             <Row style={{ margin: "10px" }}>
               <Col>
+                <Form.Check
+                  type="checkbox"
+                  label="Akciós"
+                  onChange={this.handelOnSaleChange}
+                />
+              </Col>
+            </Row>
+            <Row style={{ margin: "10px" }}>
+              <Col>
                 <DropdownButton
                   onSelect={this.handleCategorySelect}
                   title="Kategória"
@@ -258,20 +274,6 @@ class UploadForm extends Component {
                   value={this.state.price}
                   onChange={this.handlePriceChange}
                 />
-              </Col>
-            </Row>
-            <Row style={{ margin: "10px" }}>
-              <Col>
-                <DropdownButton
-                  onSelect={this.handleCategorySelect}
-                  title="Kategória"
-                >
-                  <Dropdown.Item eventKey="bag">Táska</Dropdown.Item>
-                  <Dropdown.Item eventKey="mask">Maszk</Dropdown.Item>
-                  <Dropdown.Item eventKey="accessories">
-                    Kiegészítők
-                  </Dropdown.Item>
-                </DropdownButton>
               </Col>
             </Row>
             <Row style={{ margin: "10px" }}>

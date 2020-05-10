@@ -3,13 +3,12 @@ import { Container } from "react-bootstrap";
 import ShoeList from "./ShoeList";
 import InfoBox from "./InfoBox";
 import LoginForm from "./LoginForm";
-import Editor from './Editor'
+import Editor from "./Editor";
 import OrderBox from "./OrderBox";
 import UploadForm from "./UploadForm";
-import ItemList from './ItemList'
+import ItemList from "./ItemList";
 
 class PageContent extends React.Component {
-  
   render() {
     return (
       <Container>
@@ -19,19 +18,19 @@ class PageContent extends React.Component {
           <InfoBox />
         ) : this.props.view === "order" ? (
           <OrderBox />
-        ) : this.props.view === "upload"? (
+        ) : this.props.view === "upload" ? (
           <UploadForm />
         ) : this.props.view === "edit" ? (
-          <Editor/>
+          <Editor />
         ) : this.props.view === "login" ? (
           <LoginForm />
-        ) : this.props.view === "bag" ? (
-          <ItemList items={this.props.items} />
         ) : this.props.view === "accessories" ? (
           <ItemList items={this.props.items} />
-        ) : this.props.view === "mask" ? (
-          <ItemList items={this.props.items} />
-        ) : <ShoeList shoes={this.props.shoes}/>}
+        ) : this.props.view === "onSale" ? (
+          <ShoeList shoes={this.props.shoes} />
+        ) : (
+          <ShoeList shoes={this.props.shoes} />
+        )}
       </Container>
     );
   }

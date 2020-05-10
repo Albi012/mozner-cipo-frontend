@@ -8,7 +8,6 @@ class Header extends React.Component {
     if (this.state.shoes === null) {
       var url = `http://localhost:8080/shoes/`;
       axios.get(url).then((res) => {
-        console.log("lefut");
         this.props.setShoes(res.data);
       });
     }
@@ -36,12 +35,14 @@ class Header extends React.Component {
     });
   };
 
-  handleItemCategorySelect = (event) => {
-    var url = `http://localhost:8080/items/${event.target.value}`;
-    console.log(url);
-    const category = event.target.value;
+  handleOnSaleSelect=()=>{
+    
+  }
+
+  handleAccessoriesSelect = (event) => {
+    var url = `http://localhost:8080/items/`;
     axios.get(url).then((res) => {
-      this.props.setItems(res.data, category);
+      this.props.setItems(res.data);
     });
   };
 
@@ -84,26 +85,18 @@ class Header extends React.Component {
             <button
               className="btn btn-primary"
               style={{ margin: "10px" }}
-              value="bag"
-              onClick={this.handleItemCategorySelect}
+              value="onSale"
+              onClick={this.handleOnSaleSelect}
             >
-              Táska
+              Akciók
             </button>
             <button
               className="btn btn-primary"
               style={{ margin: "10px" }}
               value="accessories"
-              onClick={this.handleItemCategorySelect}
+              onClick={this.handleAccessoriesSelect}
             >
               Kiegészítők
-            </button>
-            <button
-              className="btn btn-primary"
-              style={{ margin: "10px" }}
-              value="mask"
-              onClick={this.handleItemCategorySelect}
-            >
-              Maszk
             </button>
             <button
               className="btn btn-primary"
@@ -112,21 +105,26 @@ class Header extends React.Component {
             >
               Rólunk
             </button>
-            {this.state.user === true ?<p>
-            <button
-              className="btn btn-primary"
-              style={{ margin: "10px" }}
-              onClick={this.props.loadUploadForm}
-            >
-              Feltöltés
-            </button>
-            <button
-              className="btn btn-primary"
-              style={{ margin: "10px" }}
-              onClick={this.props.loadEditor}
-            >
-              Szerkesztés
-            </button></p> : <p></p>}
+            {this.state.user === true ? (
+              <p>
+                <button
+                  className="btn btn-primary"
+                  style={{ margin: "10px" }}
+                  onClick={this.props.loadUploadForm}
+                >
+                  Feltöltés
+                </button>
+                <button
+                  className="btn btn-primary"
+                  style={{ margin: "10px" }}
+                  onClick={this.props.loadEditor}
+                >
+                  Szerkesztés
+                </button>
+              </p>
+            ) : (
+              <p></p>
+            )}
           </Nav>
         </Navbar.Collapse>
         {/* eslint-disable-next-line */}
